@@ -42,7 +42,9 @@ def _input_text(ti: ToolInput) -> str:
 
 def run(ti: ToolInput) -> tuple[bytes, str, str]:
     text = _input_text(ti)
-    question = str((ti.params or {}).get("question") or "Descreva os dados e os principais destaques.")
+    question = str(
+        (ti.params or {}).get("question") or "Descreva os dados e os principais destaques."
+    )
     out = llm_complete(
         f"Dataset (CSV):\n{text[:20000]}\n\nQuestion: {question}\n\n"
         "Answer with numbers and, when useful, a markdown table."
